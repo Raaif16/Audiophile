@@ -120,56 +120,60 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
-| CATA-01 | Phase 2 | Pending |
-| CATA-02 | Phase 2 | Pending |
-| CATA-03 | Phase 2 | Pending |
-| CATA-04 | Phase 2 | Pending |
-| CATA-05 | Phase 2 | Pending |
-| CATA-06 | Phase 2 | Pending |
-| CATA-07 | Phase 2 | Pending |
-| REVW-01 | Phase 3 | Pending |
-| REVW-02 | Phase 3 | Pending |
-| REVW-03 | Phase 3 | Pending |
-| REVW-04 | Phase 3 | Pending |
-| REVW-05 | Phase 3 | Pending |
-| REVW-06 | Phase 3 | Pending |
-| REVW-07 | Phase 3 | Pending |
-| WISH-01 | Phase 4 | Pending |
-| WISH-02 | Phase 4 | Pending |
-| WISH-03 | Phase 4 | Pending |
-| WISH-04 | Phase 4 | Pending |
-| WISH-05 | Phase 4 | Pending |
-| ADMN-01 | Phase 5 | Pending |
-| ADMN-02 | Phase 5 | Pending |
-| ADMN-03 | Phase 5 | Pending |
-| ADMN-04 | Phase 5 | Pending |
-| ADMN-05 | Phase 5 | Pending |
-| ADMN-06 | Phase 5 | Pending |
-| ADMN-07 | Phase 5 | Pending |
-| FRNT-01 | Phase 2-5 | Pending |
-| FRNT-02 | Phase 2-5 | Pending |
-| FRNT-03 | Phase 1 | Pending |
-| FRNT-04 | Phase 1 | Pending |
-| FRNT-05 | Phase 1 | Pending |
-| FRNT-06 | Phase 2 | Pending |
-| BACK-01 | Phase 1 | Pending |
-| BACK-02 | Phase 1 | Pending |
-| BACK-03 | Phase 1 | Pending |
-| BACK-04 | Phase 1 | Pending |
-| BACK-05 | Phase 3 | Pending |
-| BACK-06 | Phase 2 | Pending |
-| BACK-07 | Phase 2 | Pending |
-| BACK-08 | Phase 1 | Pending |
-| BACK-09 | Phase 2 | Pending |
+| AUTH-01 | 1 | Pending |
+| AUTH-02 | 1 | Pending |
+| AUTH-03 | 1 | Pending |
+| AUTH-04 | 1 | Pending |
+| BACK-01 | 1 | Pending |
+| BACK-02 | 1 | Pending |
+| BACK-03 | 1 | Pending |
+| BACK-04 | 1 | Pending |
+| BACK-08 | 1 | Pending |
+| FRNT-03 | 1 | Pending |
+| FRNT-04 | 1 | Pending |
+| FRNT-05 | 1 | Pending |
+| CATA-01 | 2 | Pending |
+| CATA-02 | 2 | Pending |
+| CATA-03 | 2 | Pending |
+| CATA-04 | 2 | Pending |
+| CATA-05 | 2 | Pending |
+| CATA-06 | 2 | Pending |
+| CATA-07 | 2 | Pending |
+| FRNT-06 | 2 | Pending |
+| BACK-06 | 2 | Pending |
+| BACK-07 | 2 | Pending |
+| BACK-09 | 2 | Pending |
+| ADMN-01 | 2 | Pending |
+| ADMN-02 | 2 | Pending |
+| ADMN-03 | 2 | Pending |
+| REVW-01 | 3 | Pending |
+| REVW-02 | 3 | Pending |
+| REVW-03 | 3 | Pending |
+| REVW-04 | 3 | Pending |
+| REVW-05 | 3 | Pending |
+| REVW-06 | 3 | Pending |
+| REVW-07 | 3 | Pending |
+| FRNT-01 | 3 | Pending |
+| FRNT-02 | 3 | Pending |
+| BACK-05 | 3 | Pending |
+| WISH-01 | 4 | Pending |
+| WISH-02 | 4 | Pending |
+| WISH-03 | 4 | Pending |
+| WISH-04 | 4 | Pending |
+| WISH-05 | 4 | Pending |
+| FRNT-01 | 4 | Pending |
+| FRNT-02 | 4 | Pending |
+| ADMN-04 | 5 | Pending |
+| ADMN-05 | 5 | Pending |
+| ADMN-06 | 5 | Pending |
+| ADMN-07 | 5 | Pending |
+| FRNT-01 | 5 | Pending |
+| FRNT-02 | 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 42 total
-- Mapped to phases: 0
-- Unmapped: 42 ⚠️ (will be mapped by roadmapper)
+- Mapped to phases: 42 ✓
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2025-03-23*
