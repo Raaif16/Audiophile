@@ -33,7 +33,17 @@
 4. Session expires after 30 minutes of inactivity
 5. Frontend and backend can communicate via API
 
-**Plans:** TBD
+**Plans:** 8 plans in 3 waves
+
+Plans:
+- [x] 01-01-PLAN.md — Project structure with backend/frontend folders and dependencies ✓ (2026-03-23)
+- [ ] 01-02-PLAN.md — FastAPI app with CORS and Pydantic settings
+- [ ] 01-03-PLAN.md — MongoDB/Beanie setup with User model and test fixtures
+- [ ] 01-04-PLAN.md — Auth service with JWT and Argon2 password hashing
+- [ ] 01-05-PLAN.md — Auth endpoints (register, login, logout, /me)
+- [ ] 01-06-PLAN.md — Frontend scaffolding with React 19, TanStack Query, Zustand
+- [ ] 01-07-PLAN.md — Auth UI components (LoginForm, RegisterForm, LogoutButton)
+- [ ] 01-08-PLAN.md — End-to-end integration and verification
 
 ---
 
@@ -119,7 +129,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Authentication | 0/0 | Not started | - |
+| 1. Foundation & Authentication | 1/8 | In Progress | 2026-03-23 |
 | 2. Product Catalog | 0/0 | Not started | - |
 | 3. Reviews System | 0/0 | Not started | - |
 | 4. Wishlist & Comparison | 0/0 | Not started | - |
