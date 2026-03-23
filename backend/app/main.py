@@ -16,13 +16,7 @@ async def lifespan(app: FastAPI):
     Prevents "Document not initialized" errors by ensuring Beanie is ready.
     """
     # Startup: Initialize database connection
-    import os
-    if os.environ.get("DEBUG_BEANIE"):
-        print("DEBUG: lifespan startup - calling init_db")
     await init_db()
-    if os.environ.get("DEBUG_BEANIE"):
-        from app.models import User
-        print(f"DEBUG: lifespan startup - User.email type: {type(User.email).__name__}")
     yield
     # Shutdown: Close database connection
     await close_db()
