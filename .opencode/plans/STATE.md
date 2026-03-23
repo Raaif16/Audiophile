@@ -72,7 +72,7 @@ Progress: 8/42 requirements
 (None yet)
 
 ### Technical Debt
-- PyMongo Async deprecation warning for client.close() - needs await in close_db()
+- ~~PyMongo Async deprecation warning for client.close() - needs await in close_db()~~ ✅ Fixed in quick task 1
 - Pydantic v2 deprecation warnings for class-based Config (non-blocking)
 
 ### Blockers
