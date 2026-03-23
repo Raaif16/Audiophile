@@ -1,8 +1,8 @@
 # Project State: Audiophile Headphones Ecommerce
 
 **Current Phase:** 01-foundation-auth  
-**Current Plan:** 05 (completed)  
-**Status:** 🟢 In Progress - Plans 01-05 complete, ready for Plan 06
+**Current Plan:** 07 (completed)  
+**Status:** 🟢 In Progress - Plans 01-07 complete, ready for Plan 08
 
 ---
 
@@ -24,18 +24,18 @@
 
 ```
 Phase: 01-foundation-auth
-Plan: 06 (next)
+Plan: 08 (next)
 Status: In Progress
-Progress: 5/42 requirements
+Progress: 8/42 requirements
 
-[██████░░░░] 12% complete
+[████████░░] 19% complete
 ```
 
 ### Phase Status
 
 | Phase | Status | Completed | Blockers |
 |-------|--------|-----------|----------|
-| 1. Foundation & Authentication | In Progress | 5/16 | - |
+| 1. Foundation & Authentication | In Progress | 8/16 | - |
 | 2. Product Catalog | Not started | 0/14 | Phase 1 |
 | 3. Reviews System | Not started | 0/10 | Phase 1, 2 |
 | 4. Wishlist & Comparison | Not started | 0/7 | Phase 1, 2 |
@@ -46,9 +46,9 @@ Progress: 5/42 requirements
 ## Performance Metrics
 
 **Session started:** 2025-03-23  
-**Last action:** Completed Plan 01-05 - Authentication Endpoints  
+**Last action:** Completed Plan 01-07 - Authentication UI Components  
 **Cumulative context size:** Medium  
-**Decisions made:** 6  
+**Decisions made:** 10  
 **Blockers encountered:** 0  
 **Recovery events:** 0  
 
@@ -63,6 +63,10 @@ Progress: 5/42 requirements
 4. **ObjectId serialization** (2026-03-23) — Use Pydantic v2 field_validator(mode='before') to convert MongoDB ObjectId to string
 5. **Test lifespan management** (2026-03-23) — Use asgi-lifespan with LifespanManager because httpx.ASGITransport doesn't run FastAPI lifespan automatically
 6. **Timing attack protection** (2026-03-23) — Use DUMMY_HASH constant when user not found to prevent timing attacks on login
+7. **Axios with credentials** (2026-03-23) — Use `withCredentials: true` for httpOnly cookie support in cross-origin requests
+8. **Cache invalidation pattern** (2026-03-23) — Invalidate currentUser query on login/register, set to null on logout
+9. **Separate API layer** (2026-03-23) — Keep API functions separate from TanStack Query hooks for better testability
+10. **Zustand for UI state only** (2026-03-23) — Auth store only manages UI state (modal, mode), not authentication state
 
 ### Open Questions
 (None yet)
@@ -79,23 +83,25 @@ Progress: 5/42 requirements
 ## Session Continuity
 
 ### Current Focus
-Phase 1 in progress. Plans 01-05 complete: Project structure, FastAPI app, Database models, Auth service, Auth endpoints.
+Phase 1 in progress. Plans 01-07 complete: Project structure, FastAPI app, Database models, Auth service, Auth endpoints, Environment config, Frontend auth components.
 
 ### Next Action
-Execute Plan 01-06: Frontend authentication integration
+Execute Plan 01-08: Header with Auth Integration
 
 ### Context to Preserve
 - Auth foundation complete: register, login, logout, /me endpoints working
+- Frontend auth UI complete: LoginForm, RegisterForm, LogoutButton with TanStack Query
 - get_current_user dependency ready for protecting routes
 - Test infrastructure with LifespanManager for Beanie
 - TDD pattern established for future work
+- httpOnly cookie authentication working between frontend and backend
 
 ### Fresh Start Instructions
 If resuming this project:
 1. Check ROADMAP.md for plan status
-2. Current position: Plans 01-05 complete, ready for Plan 06
+2. Current position: Plans 01-07 complete, ready for Plan 08
 3. Run `/gsd-execute-phase 01-foundation-auth` to continue
 
 ---
 
-*Last updated: 2026-03-23 after Plan 01-05 execution*
+*Last updated: 2026-03-23 after Plan 01-07 execution*

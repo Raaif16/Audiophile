@@ -54,9 +54,9 @@
 
 - [ ] **FRNT-01**: Minimal/modern UI design aesthetic
 - [ ] **FRNT-02**: Responsive design works on desktop, tablet, and mobile
-- [ ] **FRNT-03**: React 19 with Vite build tool
-- [ ] **FRNT-04**: TanStack Query for server state management
-- [ ] **FRNT-05**: Zustand for client state (auth, UI)
+- [x] **FRNT-03**: React 19 with Vite build tool ✓ (Plan 01-06)
+- [x] **FRNT-04**: TanStack Query for server state management ✓ (Plan 01-07)
+- [x] **FRNT-05**: Zustand for client state (auth, UI) ✓ (Plan 01-07)
 - [ ] **FRNT-06**: Fast navigation between pages (< 100ms perceived)
 
 ### Backend
@@ -129,9 +129,9 @@
 | BACK-03 | 1 | Complete (2026-03-23) |
 | BACK-04 | 1 | Complete (2026-03-23) |
 | BACK-08 | 1 | Pending |
-| FRNT-03 | 1 | Pending |
-| FRNT-04 | 1 | Pending |
-| FRNT-05 | 1 | Pending |
+| FRNT-03 | 1 | Complete (2026-03-23) |
+| FRNT-04 | 1 | Complete (2026-03-23) |
+| FRNT-05 | 1 | Complete (2026-03-23) |
 | CATA-01 | 2 | Pending |
 | CATA-02 | 2 | Pending |
 | CATA-03 | 2 | Pending |
@@ -177,4 +177,4 @@
 
 ---
 *Requirements defined: 2025-03-23*
-*Last updated: 2026-03-23 after Plan 01-04 execution*
+*Last updated: 2026-03-23 after Plan 01-07 execution*
