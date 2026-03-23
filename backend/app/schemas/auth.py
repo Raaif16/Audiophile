@@ -29,12 +29,14 @@ class UserResponse(BaseModel):
         email: User email
         username: Username
         is_active: Whether account is active
+        is_admin: Whether user has admin privileges
         created_at: Account creation timestamp
     """
     id: str
     email: str
     username: str
     is_active: bool
+    is_admin: bool
     created_at: datetime
     
     model_config = {"from_attributes": True}
