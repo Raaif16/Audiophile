@@ -16,6 +16,7 @@ export interface User {
   email: string
   username: string
   is_active: boolean
+  is_admin: boolean
   created_at: string
 }
 
@@ -39,4 +40,20 @@ export const getCurrentUser = async (): Promise<User | null> => {
   } catch {
     return null
   }
+}
+
+export interface AdminStats {
+  total_users: number
+  active_users: number
+  admin_users: number
+}
+
+export const getAdminStats = async (): Promise<AdminStats> => {
+  const response = await api.get('/admin/stats')
+  return response.data
+}
+
+export const getAdminUsers = async (): Promise<User[]> => {
+  const response = await api.get('/admin/users')
+  return response.data
 }
