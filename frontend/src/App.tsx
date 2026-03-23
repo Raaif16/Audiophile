@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route, Navigate, Link } from 'react-router-dom'
 import { useCurrentUser } from './hooks/useAuth'
 import Login from './pages/Login'
@@ -7,37 +8,62 @@ import './App.css'
 
 function App() {
   const { data: user, isLoading } = useCurrentUser()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner" />
+        <p className="loading-text">Loading...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="app">
       <nav className="navbar">
-        <Link to="/">Home</Link>
-        {!user && (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-          </>
-        )}
-        {user && (
-          <>
-            <span>Welcome, {user.username}</span>
-            <LogoutButton />
-          </>
-        )}
+        <div className="navbar-brand">
+          <Link to="/" className="brand-link">Audiophile</Link>
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`} />
+            <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`} />
+            <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`} />
+          </button>
+        </div>
+        <div className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+          {!user && (
+            <>
+              <Link to="/login" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+              <Link to="/register" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Register</Link>
+            </>
+          )}
+          {user && (
+            <div className="nav-user-section">
+              <span className="user-greeting">Welcome, {user.username}</span>
+              <LogoutButton />
+            </div>
+          )}
+        </div>
       </nav>
-      <Routes>
-        <Route path="/" element={<div className="home-page"><h1>Home Page</h1><p>Welcome to Audiophile Headphones!</p></div>} />
-        <Route
-          path="/login"
-          element={!user ? <Login /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/register"
-          element={!user ? <Register /> : <Navigate to="/" />}
-        />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<div className="home-page"><h1>Home Page</h1><p>Welcome to Audiophile Headphones!</p></div>} />
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/register"
+            element={!user ? <Register /> : <Navigate to="/" />}
+          />
+        </Routes>
+      </main>
     </div>
   )
 }
