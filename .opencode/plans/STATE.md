@@ -1,8 +1,8 @@
 # Project State: Audiophile Headphones Ecommerce
 
 **Current Phase:** 01-foundation-auth  
-**Current Plan:** 01  
-**Status:** 🟡 In Progress - Plan 01 complete, ready for Plan 02  
+**Current Plan:** 03  
+**Status:** 🟡 In Progress - Plans 01-02 complete, ready for Plan 03  
 
 ---
 
@@ -24,18 +24,18 @@
 
 ```
 Phase: 01-foundation-auth
-Plan: 02 (next)
+Plan: 03 (next)
 Status: In Progress
-Progress: 1/42 requirements
+Progress: 2/42 requirements
 
-[█░░░░░░░░░] 2% complete
+[██░░░░░░░░] 5% complete
 ```
 
 ### Phase Status
 
 | Phase | Status | Completed | Blockers |
 |-------|--------|-----------|----------|
-| 1. Foundation & Authentication | In Progress | 1/16 | - |
+| 1. Foundation & Authentication | In Progress | 2/16 | - |
 | 2. Product Catalog | Not started | 0/14 | Phase 1 |
 | 3. Reviews System | Not started | 0/10 | Phase 1, 2 |
 | 4. Wishlist & Comparison | Not started | 0/7 | Phase 1, 2 |
@@ -46,9 +46,9 @@ Progress: 1/42 requirements
 ## Performance Metrics
 
 **Session started:** 2025-03-23  
-**Last action:** Completed Plan 01-01 - Project Structure  
+**Last action:** Completed Plan 01-02 - FastAPI Application Initialization  
 **Cumulative context size:** Low  
-**Decisions made:** 1  
+**Decisions made:** 3  
 **Blockers encountered:** 0  
 **Recovery events:** 0  
 
@@ -58,6 +58,8 @@ Progress: 1/42 requirements
 
 ### Key Decisions
 1. **Motor deprecation documented** (2026-03-23) — Noted Motor is deprecated May 2026; v2 will migrate to PyMongo Async
+2. **CORS configuration** (2026-03-23) — Use explicit frontend_url in allow_origins instead of wildcard when allow_credentials=True (required for httpOnly cookies)
+3. **Settings caching** (2026-03-23) — Apply @lru_cache decorator to get_settings() for singleton pattern, avoiding environment variable reload on every request
 
 ### Open Questions
 (None yet)
@@ -73,10 +75,10 @@ Progress: 1/42 requirements
 ## Session Continuity
 
 ### Current Focus
-Phase 1 in progress. Plan 01 (Project Structure) complete.
+Phase 1 in progress. Plans 01-02 (Project Structure, FastAPI App) complete.
 
 ### Next Action
-Execute Plan 01-02: FastAPI app with CORS and Pydantic settings
+Execute Plan 01-03: Database models with Beanie ODM
 
 ### Context to Preserve
 - All v1 requirements mapped to 5 phases
@@ -93,16 +95,16 @@ If resuming this project:
 ---
 
 ### Context to Preserve
-- Plan 01 complete: Project structure established with backend/frontend directories
+- Plans 01-02 complete: Project structure and FastAPI app with CORS established
 - Motor deprecation noted for v2 migration
-- Backend dependencies ready for database models in Plan 02
+- FastAPI app ready for database models in Plan 03
 
 ### Fresh Start Instructions
 If resuming this project:
 1. Check ROADMAP.md for plan status
-2. Current position: Plan 01 complete, ready for Plan 02
+2. Current position: Plans 01-02 complete, ready for Plan 03
 3. Run `/gsd-execute-phase 01-foundation-auth` to continue
 
 ---
 
-*Last updated: 2026-03-23 after Plan 01-01 execution*
+*Last updated: 2026-03-23 after Plan 01-02 execution*
