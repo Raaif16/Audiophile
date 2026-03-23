@@ -63,8 +63,8 @@
 
 - [x] **BACK-01**: FastAPI with async/await support ✓ (Plan 01-02)
 - [x] **BACK-02**: MongoDB with Beanie ODM ✓ (Plan 01-03)
-- [ ] **BACK-03**: JWT authentication with 32+ character random secret
-- [ ] **BACK-04**: Password hashing with Argon2 (pwdlib)
+- [x] **BACK-03**: JWT authentication with 32+ character random secret ✓ (Plan 01-04)
+- [x] **BACK-04**: Password hashing with Argon2 (pwdlib) ✓ (Plan 01-04)
 - [ ] **BACK-05**: File upload validation (MIME type, extension, size limit)
 - [ ] **BACK-06**: UUID filenames for uploaded images (prevent path traversal)
 - [ ] **BACK-07**: Database indexes on query fields (category, brand, text search)
@@ -126,8 +126,8 @@
 | AUTH-04 | 1 | Pending |
 | BACK-01 | 1 | Complete (2026-03-23) |
 | BACK-02 | 1 | Complete (2026-03-23) |
-| BACK-03 | 1 | Pending |
-| BACK-04 | 1 | Pending |
+| BACK-03 | 1 | Complete (2026-03-23) |
+| BACK-04 | 1 | Complete (2026-03-23) |
 | BACK-08 | 1 | Pending |
 | FRNT-03 | 1 | Pending |
 | FRNT-04 | 1 | Pending |
@@ -177,4 +177,4 @@
 
 ---
 *Requirements defined: 2025-03-23*
-*Last updated: 2026-03-23 after Plan 01-02 execution*
+*Last updated: 2026-03-23 after Plan 01-04 execution*

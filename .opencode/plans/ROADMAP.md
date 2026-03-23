@@ -39,7 +39,7 @@ Plans:
 - [x] 01-01-PLAN.md — Project structure with backend/frontend folders and dependencies ✓ (2026-03-23)
 - [x] 01-02-PLAN.md — FastAPI app with CORS and Pydantic settings ✓ (2026-03-23)
 - [x] 01-03-PLAN.md — MongoDB/Beanie setup with User model and test fixtures ✓ (2026-03-23)
-- [ ] 01-04-PLAN.md — Auth service with JWT and Argon2 password hashing
+- [x] 01-04-PLAN.md — Auth service with JWT and Argon2 password hashing ✓ (2026-03-23)
 - [ ] 01-05-PLAN.md — Auth endpoints (register, login, logout, /me)
 - [ ] 01-06-PLAN.md — Frontend scaffolding with React 19, TanStack Query, Zustand
 - [ ] 01-07-PLAN.md — Auth UI components (LoginForm, RegisterForm, LogoutButton)
@@ -129,7 +129,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Authentication | 3/8 | In Progress | 2026-03-23 |
+| 1. Foundation & Authentication | 4/8 | In Progress | 2026-03-23 |
 | 2. Product Catalog | 0/0 | Not started | - |
 | 3. Reviews System | 0/0 | Not started | - |
 | 4. Wishlist & Comparison | 0/0 | Not started | - |
