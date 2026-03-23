@@ -4,27 +4,71 @@ This module provides reusable dependencies for FastAPI's Depends() system,
 particularly for authentication and authorization.
 """
 
-from fastapi import Request, HTTPException, status
+from fastapi import Request, HTTPException, status, Depends
+
+from app.models import User
+from app.services import decode_token
 
 
-async def get_current_user(request: Request):
-    """Placeholder dependency to get the current authenticated user.
+async def get_current_user(request: Request) -> User:
+    """Get the current authenticated user from JWT token cookie.
     
-    This function will be replaced in Plan 05 with full JWT validation logic.
-    For now, it returns None to allow route definition without authentication.
+    Extracts access_token from httpOnly cookie, validates JWT signature
+    and expiration, then fetches the user from the database.
     
     Args:
         request: The FastAPI Request object
         
     Returns:
-        None (placeholder - will return User object in future implementation)
+        Authenticated User object
         
     Raises:
-        HTTPException: When JWT validation is implemented (401 if no valid token)
+        HTTPException: 401 if token is missing, invalid, or expired
     """
-    # TODO: Implement JWT validation in Plan 05
-    # 1. Extract token from httpOnly cookie
-    # 2. Validate token signature and expiration
-    # 3. Fetch user from database
-    # 4. Return user or raise 401
-    return None
+    # Extract token from cookie
+    token = request.cookies.get("access_token")
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated"
+        )
+    
+    try:
+        # Decode and validate token
+        payload = decode_token(token)
+        user_id = payload.get("sub")
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token"
+            )
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token"
+        )
+    
+    # Fetch user from database
+    user = await User.get(user_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User not found"
+        )
+    
+    return user
+
+
+async def require_user(current_user: User = Depends(get_current_user)) -> User:
+    """Require authenticated user (wrapper for clarity).
+    
+    This is an alias for get_current_user that makes route definitions
+    more readable when authentication is required.
+    
+    Args:
+        current_user: User from get_current_user dependency
+        
+    Returns:
+        Authenticated User object
+    """
+    return current_user

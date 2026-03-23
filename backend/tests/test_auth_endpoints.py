@@ -228,3 +228,82 @@ class TestAuthRouter:
             }
         )
         assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+class TestLogout:
+    """Tests for logout endpoint."""
+    
+    async def test_logout_clears_cookie(self, client):
+        """Test that logout clears the access_token cookie."""
+        email = get_unique_email()
+        password = "securepassword123"
+        
+        # Register and login first
+        await client.post(
+            "/auth/register",
+            json={
+                "email": email,
+                "username": get_unique_username(),
+                "password": password
+            }
+        )
+        
+        login_response = await client.post(
+            "/auth/login",
+            json={
+                "email": email,
+                "password": password
+            }
+        )
+        assert "access_token" in login_response.cookies
+        
+        # Logout
+        logout_response = await client.post("/auth/logout")
+        assert logout_response.status_code == 200
+        assert logout_response.json()["message"] == "Logout successful"
+
+
+@pytest.mark.asyncio
+class TestGetMe:
+    """Tests for /auth/me endpoint."""
+    
+    async def test_get_me_authenticated(self, client):
+        """Test that /me returns user data when authenticated."""
+        email = get_unique_email()
+        username = get_unique_username()
+        password = "securepassword123"
+        
+        # Register user
+        await client.post(
+            "/auth/register",
+            json={
+                "email": email,
+                "username": username,
+                "password": password
+            }
+        )
+        
+        # Login to get cookie
+        await client.post(
+            "/auth/login",
+            json={
+                "email": email,
+                "password": password
+            }
+        )
+        
+        # Get current user
+        me_response = await client.get("/auth/me")
+        assert me_response.status_code == 200
+        data = me_response.json()
+        assert data["email"] == email
+        assert data["username"] == username
+        assert "id" in data
+        assert "password" not in data
+        assert "hashed_password" not in data
+    
+    async def test_get_me_unauthenticated(self, client):
+        """Test that /me returns 401 when not authenticated."""
+        response = await client.get("/auth/me")
+        assert response.status_code == 401

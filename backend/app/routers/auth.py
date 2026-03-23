@@ -1,7 +1,8 @@
 """Authentication router for user registration, login, and logout."""
 
-from fastapi import APIRouter, HTTPException, status, Response
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 
+from app.dependencies import get_current_user
 from app.models import User
 from app.schemas import UserCreate, UserResponse, LoginRequest
 from app.services import hash_password, verify_password, create_access_token, DUMMY_HASH
@@ -95,3 +96,30 @@ async def login(response: Response, login_data: LoginRequest):
     )
     
     return {"message": "Login successful"}
+
+
+@router.post("/logout")
+async def logout(response: Response):
+    """Logout user and clear access token cookie.
+    
+    Args:
+        response: FastAPI Response object for clearing cookies
+        
+    Returns:
+        Success message
+    """
+    response.delete_cookie(key="access_token")
+    return {"message": "Logout successful"}
+
+
+@router.get("/me", response_model=UserResponse)
+async def get_me(current_user: User = Depends(get_current_user)):
+    """Get current authenticated user.
+    
+    Args:
+        current_user: Current user from JWT token cookie
+        
+    Returns:
+        Current user data
+    """
+    return current_user
