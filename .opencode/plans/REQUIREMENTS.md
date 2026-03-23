@@ -62,7 +62,7 @@
 ### Backend
 
 - [x] **BACK-01**: FastAPI with async/await support ✓ (Plan 01-02)
-- [ ] **BACK-02**: MongoDB with Beanie ODM
+- [x] **BACK-02**: MongoDB with Beanie ODM ✓ (Plan 01-03)
 - [ ] **BACK-03**: JWT authentication with 32+ character random secret
 - [ ] **BACK-04**: Password hashing with Argon2 (pwdlib)
 - [ ] **BACK-05**: File upload validation (MIME type, extension, size limit)
@@ -125,7 +125,7 @@
 | AUTH-03 | 1 | Pending |
 | AUTH-04 | 1 | Pending |
 | BACK-01 | 1 | Complete (2026-03-23) |
-| BACK-02 | 1 | Pending |
+| BACK-02 | 1 | Complete (2026-03-23) |
 | BACK-03 | 1 | Pending |
 | BACK-04 | 1 | Pending |
 | BACK-08 | 1 | Pending |
