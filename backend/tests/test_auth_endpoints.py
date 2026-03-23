@@ -83,3 +83,132 @@ class TestLoginRequest:
                 email="not-an-email",
                 password="password123"
             )
+
+
+@pytest.mark.asyncio
+class TestAuthRouter:
+    """Tests for authentication router endpoints."""
+    
+    async def test_register_success(self, client):
+        """Test successful user registration."""
+        response = await client.post(
+            "/auth/register",
+            json={
+                "email": "newuser@example.com",
+                "username": "newuser",
+                "password": "securepassword123"
+            }
+        )
+        assert response.status_code == 201
+        data = response.json()
+        assert data["email"] == "newuser@example.com"
+        assert data["username"] == "newuser"
+        assert "id" in data
+        assert "password" not in data
+        assert "hashed_password" not in data
+    
+    async def test_register_duplicate_email(self, client):
+        """Test registration with duplicate email fails."""
+        # First registration
+        await client.post(
+            "/auth/register",
+            json={
+                "email": "dup@example.com",
+                "username": "user1",
+                "password": "securepassword123"
+            }
+        )
+        # Second registration with same email
+        response = await client.post(
+            "/auth/register",
+            json={
+                "email": "dup@example.com",
+                "username": "user2",
+                "password": "securepassword123"
+            }
+        )
+        assert response.status_code == 400
+        assert "email" in response.json()["detail"].lower()
+    
+    async def test_register_duplicate_username(self, client):
+        """Test registration with duplicate username fails."""
+        # First registration
+        await client.post(
+            "/auth/register",
+            json={
+                "email": "user1@example.com",
+                "username": "dupuser",
+                "password": "securepassword123"
+            }
+        )
+        # Second registration with same username
+        response = await client.post(
+            "/auth/register",
+            json={
+                "email": "user2@example.com",
+                "username": "dupuser",
+                "password": "securepassword123"
+            }
+        )
+        assert response.status_code == 400
+        assert "username" in response.json()["detail"].lower()
+    
+    async def test_login_success(self, client):
+        """Test successful login sets httpOnly cookie."""
+        # Register a user first
+        await client.post(
+            "/auth/register",
+            json={
+                "email": "login@example.com",
+                "username": "loginuser",
+                "password": "securepassword123"
+            }
+        )
+        
+        # Login
+        response = await client.post(
+            "/auth/login",
+            json={
+                "email": "login@example.com",
+                "password": "securepassword123"
+            }
+        )
+        assert response.status_code == 200
+        assert response.json()["message"] == "Login successful"
+        
+        # Check for httpOnly cookie
+        cookies = response.cookies
+        assert "access_token" in cookies
+    
+    async def test_login_invalid_credentials(self, client):
+        """Test login with wrong password fails."""
+        # Register a user first
+        await client.post(
+            "/auth/register",
+            json={
+                "email": "badlogin@example.com",
+                "username": "badloginuser",
+                "password": "securepassword123"
+            }
+        )
+        
+        # Login with wrong password
+        response = await client.post(
+            "/auth/login",
+            json={
+                "email": "badlogin@example.com",
+                "password": "wrongpassword"
+            }
+        )
+        assert response.status_code == 401
+    
+    async def test_login_nonexistent_user(self, client):
+        """Test login with non-existent user fails."""
+        response = await client.post(
+            "/auth/login",
+            json={
+                "email": "nonexistent@example.com",
+                "password": "password123"
+            }
+        )
+        assert response.status_code == 401
