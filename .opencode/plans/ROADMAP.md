@@ -41,8 +41,8 @@ Plans:
 - [x] 01-03-PLAN.md — MongoDB/Beanie setup with User model and test fixtures ✓ (2026-03-23)
 - [x] 01-04-PLAN.md — Auth service with JWT and Argon2 password hashing ✓ (2026-03-23)
 - [x] 01-05-PLAN.md — Auth endpoints (register, login, logout, /me) ✓ (2026-03-23)
-- [ ] 01-06-PLAN.md — Frontend scaffolding with React 19, TanStack Query, Zustand
-- [ ] 01-07-PLAN.md — Auth UI components (LoginForm, RegisterForm, LogoutButton)
+- [x] 01-06-PLAN.md — Frontend scaffolding with React 19, TanStack Query, Zustand ✓ (2026-03-23)
+- [x] 01-07-PLAN.md — Auth UI components (LoginForm, RegisterForm, LogoutButton) ✓ (2026-03-23)
 - [ ] 01-08-PLAN.md — End-to-end integration and verification
 
 ---
@@ -129,7 +129,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Authentication | 5/8 | In Progress | 2026-03-23 |
+| 1. Foundation & Authentication | 7/8 | In Progress | 2026-03-23 |
 | 2. Product Catalog | 0/0 | Not started | - |
 | 3. Reviews System | 0/0 | Not started | - |
 | 4. Wishlist & Comparison | 0/0 | Not started | - |
