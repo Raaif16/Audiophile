@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.database import init_db, close_db
+from app.routers import auth_router
 
 
 @asynccontextmanager
@@ -15,7 +16,13 @@ async def lifespan(app: FastAPI):
     Prevents "Document not initialized" errors by ensuring Beanie is ready.
     """
     # Startup: Initialize database connection
+    import os
+    if os.environ.get("DEBUG_BEANIE"):
+        print("DEBUG: lifespan startup - calling init_db")
     await init_db()
+    if os.environ.get("DEBUG_BEANIE"):
+        from app.models import User
+        print(f"DEBUG: lifespan startup - User.email type: {type(User.email).__name__}")
     yield
     # Shutdown: Close database connection
     await close_db()
@@ -48,7 +55,5 @@ async def health_check():
     return {"status": "ok"}
 
 
-# Future router imports will go here:
-# from app.routers import auth, users
-# app.include_router(auth.router, prefix="/auth", tags=["auth"])
-# app.include_router(users.router, prefix="/users", tags=["users"])
+# Include routers
+app.include_router(auth_router)

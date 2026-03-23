@@ -1,7 +1,9 @@
 """Authentication request and response schemas."""
 
 from datetime import datetime
-from pydantic import BaseModel, EmailStr, Field
+from typing import Any
+from pydantic import BaseModel, EmailStr, Field, field_validator
+from bson import ObjectId
 
 
 class UserCreate(BaseModel):
@@ -23,7 +25,7 @@ class UserResponse(BaseModel):
     Excludes sensitive fields like password/hashed_password.
     
     Attributes:
-        id: User ID
+        id: User ID (converted from ObjectId to string)
         email: User email
         username: Username
         is_active: Whether account is active
@@ -36,6 +38,14 @@ class UserResponse(BaseModel):
     created_at: datetime
     
     model_config = {"from_attributes": True}
+    
+    @field_validator('id', mode='before')
+    @classmethod
+    def validate_object_id(cls, v: Any) -> str:
+        """Convert ObjectId to string before validation."""
+        if isinstance(v, ObjectId):
+            return str(v)
+        return str(v)
 
 
 class LoginRequest(BaseModel):

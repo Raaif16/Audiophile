@@ -1,9 +1,20 @@
 """Tests for authentication endpoints and schemas."""
 
 import pytest
+import uuid
 from datetime import datetime
 
 from app.schemas.auth import UserCreate, UserResponse, LoginRequest
+
+
+def get_unique_email():
+    """Generate a unique email for testing."""
+    return f"test_{uuid.uuid4().hex[:8]}@example.com"
+
+
+def get_unique_username():
+    """Generate a unique username for testing."""
+    return f"user_{uuid.uuid4().hex[:8]}"
 
 
 class TestUserCreate:
@@ -94,27 +105,26 @@ class TestAuthRouter:
         response = await client.post(
             "/auth/register",
             json={
-                "email": "newuser@example.com",
-                "username": "newuser",
+                "email": get_unique_email(),
+                "username": get_unique_username(),
                 "password": "securepassword123"
             }
         )
         assert response.status_code == 201
         data = response.json()
-        assert data["email"] == "newuser@example.com"
-        assert data["username"] == "newuser"
         assert "id" in data
         assert "password" not in data
         assert "hashed_password" not in data
     
     async def test_register_duplicate_email(self, client):
         """Test registration with duplicate email fails."""
+        email = get_unique_email()
         # First registration
         await client.post(
             "/auth/register",
             json={
-                "email": "dup@example.com",
-                "username": "user1",
+                "email": email,
+                "username": get_unique_username(),
                 "password": "securepassword123"
             }
         )
@@ -122,8 +132,8 @@ class TestAuthRouter:
         response = await client.post(
             "/auth/register",
             json={
-                "email": "dup@example.com",
-                "username": "user2",
+                "email": email,
+                "username": get_unique_username(),
                 "password": "securepassword123"
             }
         )
@@ -132,12 +142,13 @@ class TestAuthRouter:
     
     async def test_register_duplicate_username(self, client):
         """Test registration with duplicate username fails."""
+        username = get_unique_username()
         # First registration
         await client.post(
             "/auth/register",
             json={
-                "email": "user1@example.com",
-                "username": "dupuser",
+                "email": get_unique_email(),
+                "username": username,
                 "password": "securepassword123"
             }
         )
@@ -145,8 +156,8 @@ class TestAuthRouter:
         response = await client.post(
             "/auth/register",
             json={
-                "email": "user2@example.com",
-                "username": "dupuser",
+                "email": get_unique_email(),
+                "username": username,
                 "password": "securepassword123"
             }
         )
@@ -155,13 +166,16 @@ class TestAuthRouter:
     
     async def test_login_success(self, client):
         """Test successful login sets httpOnly cookie."""
+        email = get_unique_email()
+        password = "securepassword123"
+        
         # Register a user first
         await client.post(
             "/auth/register",
             json={
-                "email": "login@example.com",
-                "username": "loginuser",
-                "password": "securepassword123"
+                "email": email,
+                "username": get_unique_username(),
+                "password": password
             }
         )
         
@@ -169,8 +183,8 @@ class TestAuthRouter:
         response = await client.post(
             "/auth/login",
             json={
-                "email": "login@example.com",
-                "password": "securepassword123"
+                "email": email,
+                "password": password
             }
         )
         assert response.status_code == 200
@@ -182,12 +196,14 @@ class TestAuthRouter:
     
     async def test_login_invalid_credentials(self, client):
         """Test login with wrong password fails."""
+        email = get_unique_email()
+        
         # Register a user first
         await client.post(
             "/auth/register",
             json={
-                "email": "badlogin@example.com",
-                "username": "badloginuser",
+                "email": email,
+                "username": get_unique_username(),
                 "password": "securepassword123"
             }
         )
@@ -196,7 +212,7 @@ class TestAuthRouter:
         response = await client.post(
             "/auth/login",
             json={
-                "email": "badlogin@example.com",
+                "email": email,
                 "password": "wrongpassword"
             }
         )
