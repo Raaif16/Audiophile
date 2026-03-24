@@ -274,38 +274,6 @@
   }
 }
 
-.nav-link-admin {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--accent);
-  font-weight: 600;
-
-  &:hover {
-    background: var(--accent);
-    color: white;
-
-    .admin-nav-badge {
-      background: white;
-      color: var(--accent);
-    }
-  }
-}
-
-.admin-nav-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  background: var(--accent);
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 50%;
-  transition: background 0.2s, color 0.2s;
-}
-
 .nav-user-section {
   display: flex;
   align-items: center;

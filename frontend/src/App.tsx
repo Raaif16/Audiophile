@@ -38,12 +38,6 @@ function App() {
         </div>
         <div className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
           <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-          {user?.is_admin && (
-            <Link to="/admin" className="nav-link nav-link-admin" onClick={() => setIsMobileMenuOpen(false)}>
-              Admin
-              <span className="admin-nav-badge">A</span>
-            </Link>
-          )}
           {!user && (
             <>
               <Link to="/login" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
@@ -68,10 +62,6 @@ function App() {
           <Route
             path="/register"
             element={!user ? <Register /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/admin"
-            element={<Admin />}
           />
         </Routes>
       </main>

@@ -72,25 +72,3 @@ async def require_user(current_user: User = Depends(get_current_user)) -> User:
         Authenticated User object
     """
     return current_user
-
-
-async def require_admin(current_user: User = Depends(get_current_user)) -> User:
-    """Require authenticated admin user.
-    
-    Validates that the current user has admin privileges.
-    
-    Args:
-        current_user: User from get_current_user dependency
-        
-    Returns:
-        Authenticated admin User object
-        
-    Raises:
-        HTTPException: 403 if user is not an admin
-    """
-    if not current_user.is_admin:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin privileges required"
-        )
-    return current_user
