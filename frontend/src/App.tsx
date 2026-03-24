@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, Link } from 'react-router-dom'
 import { useCurrentUser } from './hooks/useAuth'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Admin from './pages/Admin'
+import Home from './pages/Home'
 import { LogoutButton } from './components/auth'
 import './App.css'
 
@@ -60,7 +60,7 @@ function App() {
       </nav>
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<div className="home-page"><h1>Home Page</h1><p>Welcome to Audiophile Headphones!</p></div>} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={!user ? <Login /> : <Navigate to="/" />}
